@@ -13,7 +13,7 @@ ${COMPATIBILITY_PAGE}`)
 }
 
 global['pnpm__startedAt'] = Date.now()
-require('../dist/pnpm.cjs')
+// require('../dist/pnpm.cjs')
 
 // if you want to debug at your local env, you can use this
-// require('../lib/pnpm')
+require('../lib/pnpm')
