@@ -14,7 +14,7 @@ import { logger } from '@pnpm/logger'
 import { type ParsedCliArgs } from '@pnpm/parse-cli-args'
 import { node } from '@pnpm/plugin-commands-env'
 import chalk from 'chalk'
-import { checkForUpdates } from './checkForUpdates'
+// import { checkForUpdates } from './checkForUpdates'
 import { pnpmCmds, rcOptionsTypes } from './cmd'
 import { formatUnknownOptionsError } from './formatError'
 import { parseCliArgs } from './parseCliArgs'
@@ -237,17 +237,18 @@ export async function main (inputArgv: string[]) {
       resolve()
     }, 0))
 
-    if (
-      config.updateNotifier !== false &&
-      !isCI &&
-      !selfUpdate &&
-      !config.offline &&
-      !config.preferOffline &&
-      !config.fallbackCommandUsed &&
-      (cmd === 'install' || cmd === 'add')
-    ) {
-      checkForUpdates(config).catch(() => { /* Ignore */ })
-    }
+    // 注掉pnpm的自更新检测，减少干扰
+    // if (
+    //   config.updateNotifier !== false &&
+    //   !isCI &&
+    //   !selfUpdate &&
+    //   !config.offline &&
+    //   !config.preferOffline &&
+    //   !config.fallbackCommandUsed &&
+    //   (cmd === 'install' || cmd === 'add')
+    // ) {
+    //   checkForUpdates(config).catch(() => { /* Ignore */ })
+    // }
 
     if (config.force === true && !config.fallbackCommandUsed) {
       logger.warn({
